@@ -15,8 +15,8 @@ class AbstractWavelet(object):
         }
     }
 
-    def __init__(self, points=201):
-        self.a = 1
+    def __init__(self, points=201, a=1):
+        self.a = a
         self.p = points
         for p, values in self.params.iteritems():
             if p not in vars(self):
@@ -24,7 +24,7 @@ class AbstractWavelet(object):
             else:
                 raise KeyError('Variable "{}" already in use'.format(p))
 
-    def set_window(self, value):
+    def set_points(self, value):
         if value > 0:
             self.p = value
 
