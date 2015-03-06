@@ -6,6 +6,7 @@ import abc
 class AbstractWavelet(object):
     __metaclass__ = abc.ABCMeta
 
+    name = "This is my name"
     params = {
         'q': {  # Parameter Variable Name
             'min': 0,    # Minimal Variable Value (int/float)
@@ -43,7 +44,3 @@ class AbstractWavelet(object):
     def fn(self):
         q = self.q
         return lambda a, w: NotImplementedError
-
-    @abc.abstractproperty
-    def name(self):
-        return "This is my name"
