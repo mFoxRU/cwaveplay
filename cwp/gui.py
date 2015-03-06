@@ -49,6 +49,22 @@ class GuiApp(QtGui.QMainWindow):
         self._conf_ui()
         self.plot_nf()
 
+    def _link_gen(self, slider, spinbox, param):
+
+        @QtCore.pyqtSlot(int)
+        @QtCore.pyqtSlot(float)
+        def _link(value):
+            # It's not a best solution, but it simplifies code
+                if isinstance(value, int):  # It was Slider
+                    value = float(value)/self.spin_slide_factor
+                    spinbox.setValue(value)
+                else:   # It was Spinbox
+                    slider.setValue(value*self.spin_slide_factor)
+                self.wavelet.change_param(param, value)
+                self.plot_nf()
+
+        return _link
+
     def _conf_ui(self):
         # Delete old widgets
         for element in self.params_widgets:
@@ -71,6 +87,9 @@ class GuiApp(QtGui.QMainWindow):
             slider.setMinimum(p['min'] * self.spin_slide_factor)
             slider.setMaximum(p['max'] * self.spin_slide_factor)
             slider.setValue(p['def'] * self.spin_slide_factor)
+
+            # Make connections
+            slider.valueChanged.connect(self._link_gen(slider, spinbox, v))
 
             # Store for easier removal
             self.params_widgets.append(label)
