@@ -11,6 +11,7 @@ class Mhat(AbstractWavelet):
     def fn(self):
         return sps.ricker
 
+    @property
     def name(self):
         return 'MHat'
 

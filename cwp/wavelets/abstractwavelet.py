@@ -44,6 +44,6 @@ class AbstractWavelet(object):
         q = self.q
         return lambda a, w: NotImplementedError
 
-    @abc.abstractmethod
+    @abc.abstractproperty
     def name(self):
         return "This is my name"
