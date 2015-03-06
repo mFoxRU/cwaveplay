@@ -33,7 +33,7 @@ class AbstractWavelet(object):
 
     def change_param(self, param, value):
         if param in self.params:
-            if self.params[param]['min'] < value < self.params[param]['max']:
+            if self.params[param]['min'] <= value <= self.params[param]['max']:
                 vars(self)[param] = value
 
     @property

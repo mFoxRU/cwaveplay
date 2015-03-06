@@ -10,12 +10,12 @@ class Spike(AbstractWavelet):
 
     params = {
         'z1': {
-            'min': 0,
+            'min': .1,
             'max': 100,
             'def': 1
         },
         'z2': {
-            'min': 0,
+            'min': .1,
             'max': 100,
             'def': 2}
     }
